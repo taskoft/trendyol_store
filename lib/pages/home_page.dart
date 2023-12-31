@@ -10,7 +10,6 @@ class HomePage extends StatelessWidget {
         preferredSize: const Size.fromHeight(75),
         child: AppBar(
           centerTitle: true,
-          leading: IconButton(onPressed: () {}, icon: const Icon(Icons.pages)),
           title: const Image(
             image: AssetImage("assets/icons/trendyol_logo_2.png"),
             fit: BoxFit.contain,
@@ -85,12 +84,7 @@ class HomePage extends StatelessWidget {
               );
             }),
       ),
-      bottomNavigationBar: BottomNavigationBar(items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home)),
-        BottomNavigationBarItem(icon: Icon(Icons.home)),
-        BottomNavigationBarItem(icon: Icon(Icons.home)),
-        BottomNavigationBarItem(icon: Icon(Icons.home)),
-      ]),
+
     );
   }
 }
