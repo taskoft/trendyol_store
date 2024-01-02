@@ -19,7 +19,7 @@ class Product {
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
-    price = json['price'];
+    price =  json['price'] == null ? 0.0 : json['price'].toDouble();
     description = json['description'];
     category = json['category'];
     image = json['image'];
@@ -31,8 +31,8 @@ class Product {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['title'] = this.title;
-    data['price'] = this.price;
-    data['description'] = this.description;
+    data['price'] =  this.price;
+    data['description'] =  this.description;
     data['category'] = this.category;
     data['image'] = this.image;
     if (this.rating != null) {
@@ -49,7 +49,7 @@ class Rating {
   Rating({this.rate, this.count});
 
   Rating.fromJson(Map<String, dynamic> json) {
-    rate = json['rate'];
+    rate = json['rate']== null ? 0.0 : json['rate'].toDouble();
     count = json['count'];
   }
 

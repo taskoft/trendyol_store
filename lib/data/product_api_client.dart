@@ -13,8 +13,8 @@ class ProductApiClient {
       throw Exception("There is no data");
     } else {
       final fetchedJson = jsonDecode(fetchedString.body);
-       var fetchedProduct= fetchedJson.fromJson();
-      return fetchedProduct;
+     List<Product> products = fetchedJson.map<Product>((json) => Product.fromJson(json)).toList();
+      return products;
     }
   }
 }
