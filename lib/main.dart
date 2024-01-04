@@ -7,7 +7,10 @@ import 'pages/home_page.dart';
 
 void main() {
   setupLocator();
-  runApp(const MyApp());
+  runApp(BlocProvider<ProductListBloc>(
+      create: (context) =>
+          ProductListBloc(ProductListLoadedState(products: [])),
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,9 +26,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
           useMaterial3: true,
         ),
-        home: BlocProvider<ProductListBloc>(
-          create: (context) => ProductListBloc(ProductListLoadedState(products: [])),
-          child: const HomePage(),
-        ));
+        home: HomePage());
   }
 }

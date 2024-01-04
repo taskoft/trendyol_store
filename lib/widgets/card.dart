@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 class CardWidget extends StatefulWidget {
   final String productImagePath;
   final String productName;
-  // final List<int> favoriteIdList;
+  final void Function(int,bool) addFavoriteId;
   final int productId;
   const CardWidget(
       {super.key,
       required this.productImagePath,
       required this.productName,
-      required this.productId});
+      required this.productId,
+      required this.addFavoriteId});
   @override
   State<CardWidget> createState() => _CardWidgetState();
 }
@@ -19,20 +20,18 @@ class _CardWidgetState extends State<CardWidget> {
   late final String productImagePath;
   late final String productName;
   late final int productId;
-  List<int> favoriteIdList = [];
 
   @override
   void initState() {
     super.initState();
     productImagePath = widget.productImagePath;
     productName = widget.productName;
-    //favoriteIdList.add(widget.productId) ;
+
     productId = widget.productId;
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(10)),
@@ -96,8 +95,9 @@ class _CardWidgetState extends State<CardWidget> {
               onPressed: () {
                 isChecked = !isChecked;
                 if (isChecked) {
-                  favoriteIdList.add(productId);
-                  
+                widget.addFavoriteId(productId,true);
+                }else{
+                widget.addFavoriteId(productId,false);
                 }
                 setState(
                   () {},
