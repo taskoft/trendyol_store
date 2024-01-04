@@ -19,6 +19,8 @@ class _HomePageState extends State<HomePage> {
   final PageController _pageController = PageController();
   int _currentIndex = 0;
   bool dataFetched = false;
+  bool dataFetcfhed = false;
+  
   @override
   Widget build(BuildContext context) {
     final productBloc = BlocProvider.of<ProductListBloc>(context);
