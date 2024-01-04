@@ -6,8 +6,7 @@ import "package:trendyol_store/widgets/card.dart";
 
 // ignore: must_be_immutable
 class FavoritesPage extends StatefulWidget {
-  List<int> favoritesIdList;
-  FavoritesPage({super.key, required this.favoritesIdList});
+  const FavoritesPage({super.key});
 
   @override
   State<FavoritesPage> createState() => _FavoritesPageState();
@@ -19,8 +18,6 @@ class _FavoritesPageState extends State<FavoritesPage> {
   bool here = false;
   @override
   void initState() {
-    favoritesIdList = widget.favoritesIdList;
-
     super.initState();
   }
 
@@ -36,11 +33,13 @@ class _FavoritesPageState extends State<FavoritesPage> {
       builder: (context, state) {
         if (state is ProductListLoadedState && currentIndex == 2) {
           final List<Product> products = state.products;
-          for (var f in favoritesIdList) {
+          /*for (var f in favoritesIdList) {
             favoritedProductList += (products.where(
               (element) => f == element.id,
             )).toList();
-          }
+          }*/
+          favoritedProductList +=
+              (products.where((element) => element.isChecked!)).toList();
 
           if (products.isEmpty) {
             return const Text("Products is null");
@@ -55,7 +54,10 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       favoritedProductList[count].image.toString(),
                   productName: favoritedProductList[count].title.toString(),
                   productId: favoritedProductList[count].id!,
-                  addFavoriteId: (int id, bool isChecked) {},
+                  productIsChecked: products[count].isChecked!,
+                  addFavoriteId: (int id,bool isChecked) {
+products[id].isChecked=isChecked;
+                  },
                 );
               });
         } else {

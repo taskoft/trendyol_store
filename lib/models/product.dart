@@ -8,6 +8,7 @@ class Product {
   String? category;
   String? image;
   Rating? rating;
+  bool? isChecked;
 
   Product(
       {this.id,
@@ -16,25 +17,26 @@ class Product {
       this.description,
       this.category,
       this.image,
-      this.rating});
+      this.rating,
+      this.isChecked});
 
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
-    price =  json['price'] == null ? 0.0 : json['price'].toDouble();
+    price = json['price'] == null ? 0.0 : json['price'].toDouble();
     description = json['description'];
     category = json['category'];
     image = json['image'];
-    rating =
-        json['rating'] != null ?  Rating.fromJson(json['rating']) : null;
+    isChecked = false;
+    rating = json['rating'] != null ? Rating.fromJson(json['rating']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['title'] = this.title;
-    data['price'] =  this.price;
-    data['description'] =  this.description;
+    data['price'] = this.price;
+    data['description'] = this.description;
     data['category'] = this.category;
     data['image'] = this.image;
     if (this.rating != null) {
@@ -51,7 +53,7 @@ class Rating {
   Rating({this.rate, this.count});
 
   Rating.fromJson(Map<String, dynamic> json) {
-    rate = json['rate']== null ? 0.0 : json['rate'].toDouble();
+    rate = json['rate'] == null ? 0.0 : json['rate'].toDouble();
     count = json['count'];
   }
 
