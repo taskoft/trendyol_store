@@ -16,6 +16,7 @@ class ProductListBloc extends Bloc<ProductListEvent, ProductListState> {
 
   void _fetchProducts (
       FetchProductsEvent event, Emitter<ProductListState> emit) async{
+         
         final List<Product> products =await productRepository.getProducts();
        debugPrint("A");
     emit(ProductListLoadedState(products: products));

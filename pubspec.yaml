@@ -85,7 +85,7 @@ flutter:
   fonts:
     - family: Dance
       fonts:
-        - asset: lib/fonts/DancingScript_VariableFont_wght.ttf
+        - asset: lib/fonts/Teko-VariableFont_wght.ttf
           
     
   #

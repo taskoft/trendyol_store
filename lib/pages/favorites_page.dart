@@ -19,7 +19,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
   final bool isChecked = false;
   late List<int> favoritesIdList;
   bool here = false;
-  
+
   @override
   void initState() {
     favoritesIdList = widget.favoritesIdList;
@@ -32,20 +32,20 @@ class _FavoritesPageState extends State<FavoritesPage> {
     int currentIndex = 2;
 
     final productBloc = BlocProvider.of<ProductListBloc>(context);
-   // productBloc.add(FetchProductsEvent());
+    // productBloc.add(FetchProductsEvent());
     List<Product> favoritedProductList = <Product>[];
     return Scaffold(
-      backgroundColor: Colors.teal,
+      backgroundColor: Colors.grey.shade200,
       appBar: const PreferredSize(
           preferredSize: Size(100, 45), child: AppBarWidget()),
       body: BlocBuilder(
         bloc: productBloc,
         builder: (context, state) {
-          if (state is ProductListLoadedState && currentIndex==2) {
+          if (state is ProductListLoadedState && currentIndex == 2) {
             final List<Product> products = state.products;
             for (var f in favoritesIdList) {
               favoritedProductList += (products.where(
-                (element) =>f == element.id,
+                (element) => f == element.id,
               )).toList();
             }
 
@@ -73,21 +73,28 @@ class _FavoritesPageState extends State<FavoritesPage> {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.amber,fixedColor: Colors.red,
+        unselectedItemColor: Colors.black,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.orange.shade600,
+        backgroundColor: Colors.grey.shade100,
         currentIndex: currentIndex,
+        iconSize: 35,
         onTap: (int newIndex) {
           currentIndex = newIndex;
           if (newIndex == 0) {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => HomePage()));
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
           }
         },
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.male), label: "Profile"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: "Favorite"),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Menu"),
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_basket), label: ""),
         ],
       ),
     );

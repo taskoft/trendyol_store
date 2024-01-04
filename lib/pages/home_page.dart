@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
       body: BlocBuilder(
         bloc: productBloc,
         builder: (context, state) {
-          if (state is ProductListLoadedState && _currentIndex==0) {
+          if (state is ProductListLoadedState && _currentIndex == 0) {
             final List<Product> products = state.products;
             if (products.isEmpty) {
               return const Text("Products is null");
@@ -52,9 +52,12 @@ class HomePage extends StatelessWidget {
           }
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.amber,
+      bottomNavigationBar: BottomNavigationBar(unselectedItemColor: Colors.black,
+       type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.orange.shade600,
+        backgroundColor: Colors.grey.shade100,
         currentIndex: _currentIndex,
+        iconSize: 35,
         onTap: (int newIndex) {
           _currentIndex = newIndex;
           if (newIndex == 2) {
@@ -65,13 +68,14 @@ class HomePage extends StatelessWidget {
                           favoritesIdList: _favoriteIdList,
                         )));
           }
-        },
+        },showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.male), label: "Profile"),
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: "Favorite"),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Menu"),
+              icon: Icon(Icons.favorite), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_basket), label: ""),
         ],
       ),
     );

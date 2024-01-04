@@ -46,7 +46,7 @@ class _CardWidgetState extends State<CardWidget> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Image.network(productImagePath,
-                  height: 150,
+                  height: 140,
                   alignment: Alignment.center,
                   fit: BoxFit.contain),
             ),
@@ -68,7 +68,7 @@ class _CardWidgetState extends State<CardWidget> {
           const Positioned(
             left: 20,
             right: 20,
-            top: 200,
+            top: 196,
             child: Text(
               'SHOP NOW  ',
               style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
@@ -76,12 +76,12 @@ class _CardWidgetState extends State<CardWidget> {
             ),
           ),
           const Positioned(
-              left: 40,
-              right: 40,
-              top: 219,
+              left: 45,
+              right: 45,
+              top: 216,
               child: Divider(
                 color: Colors.black,
-                height: 1,
+                height: 4,
                 thickness: 2,
               )),
           Positioned(
