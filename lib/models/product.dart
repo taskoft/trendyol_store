@@ -1,6 +1,9 @@
 // ignore_for_file: unnecessary_this, unnecessary_new, prefer_collection_literals
 
-class Product {
+import 'package:equatable/equatable.dart';
+
+// ignore: must_be_immutable
+class Product extends Equatable {
   int? id;
   String? title;
   double? price;
@@ -19,6 +22,16 @@ class Product {
       this.image,
       this.rating,
       this.isChecked});
+
+ @override
+ List<Object?> get props => [id,
+      title,
+      price,
+      description,
+      category,
+      image,
+      rating,
+      isChecked];
 
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];

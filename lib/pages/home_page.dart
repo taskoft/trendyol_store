@@ -4,27 +4,23 @@ import "package:trendyol_store/blocs/product_bloc/product_bloc.dart";
 import "package:trendyol_store/models/product.dart";
 import "package:trendyol_store/widgets/card.dart";
 
-// ignore: must_be_immutable
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
-  bool dataFetched = false;
-  bool dataFetcfhed = false;
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final productBloc = BlocProvider.of<ProductListBloc>(context);
-    if (!dataFetched) {
-      productBloc.add(FetchProductsEvent());
-      dataFetched = true;
-    }
+    debugPrint("HOMEPAGE BUILD");
     return BlocBuilder(
       bloc: productBloc,
       builder: (context, state) {
+        if (state is ProductListInitialState) {
+          return const Center(
+              child: CircularProgressIndicator(color: Colors.teal));
+        }
         if (state is ProductListLoadedState) {
           final List<Product> products = state.products;
-          if (products.isEmpty) {
-            return const Text("Products is null");
-          }
+
           return GridView.builder(
             itemCount: products.length,
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -36,17 +32,16 @@ class HomePage extends StatelessWidget {
                 productId: products[count].id!,
                 productIsChecked: products[count].isChecked!,
                 addFavoriteId: (int id, bool isChecked) {
-                  products[id].isChecked;
+                  /*products[id].isChecked = isChecked;*/
+                  state.products[id-1].isChecked = isChecked;
+                  debugPrint("CALLBACK $id ");
                 },
               );
             },
           );
         } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const Center(child: Text("Something went wrong"));
         }
-        
       },
     );
   }

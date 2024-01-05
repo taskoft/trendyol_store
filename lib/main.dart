@@ -9,7 +9,8 @@ void main() {
   setupLocator();
   runApp(BlocProvider<ProductListBloc>(
       create: (context) =>
-          ProductListBloc(ProductListLoadedState(products: [])),
+          ProductListBloc(ProductListInitialState(products: const []))
+            ..add(FetchProductsEvent()),
       child: const MyApp()));
 }
 
@@ -26,6 +27,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
           useMaterial3: true,
         ),
-        home: MainState());
+        home: const MainState());
   }
 }

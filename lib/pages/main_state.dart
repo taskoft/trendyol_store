@@ -1,19 +1,17 @@
 import "package:flutter/material.dart";
-import 'package:trendyol_store/pages/home_page.dart';
 import '../widgets/app_bar.dart';
 import 'favorites_page.dart';
 import 'home_page.dart';
 
 // ignore: must_be_immutable
 class MainState extends StatefulWidget {
-  MainState({super.key});
+  const MainState({super.key});
 
   @override
   State<MainState> createState() => _MainStateState();
 }
 
 class _MainStateState extends State<MainState> {
-  final PageController _pageController = PageController();
   int _currentIndex = 0;
 
   @override
@@ -22,18 +20,14 @@ class _MainStateState extends State<MainState> {
       backgroundColor: Colors.grey.shade200,
       appBar: const PreferredSize(
           preferredSize: Size(100, 45), child: AppBarWidget()),
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        children: [
-          HomePage(),
-          const Text(""),
-          const FavoritesPage(),
-          const Text(""),
+      body: IndexedStack(
+        index: _currentIndex,
+        children:  [
+          //Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage() )),
+         const HomePage(),
+         const Text(""),
+          FavoritesPage(),
+         const Text(""),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -44,11 +38,11 @@ class _MainStateState extends State<MainState> {
         currentIndex: _currentIndex,
         iconSize: 35,
         onTap: (int newIndex) {
-          _currentIndex = newIndex;
-
-          _pageController.animateToPage(newIndex,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut);
+          if (_currentIndex != newIndex) {
+            setState(() {
+              _currentIndex = newIndex;
+            });
+          }
         },
         showSelectedLabels: false,
         showUnselectedLabels: false,

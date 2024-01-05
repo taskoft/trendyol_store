@@ -95,7 +95,10 @@ class _CardWidgetState extends State<CardWidget> {
                 color: (isChecked ? Colors.red.shade300 : Colors.black45),
               ),
               onPressed: () {
+                debugPrint("ONPRESSED");
                 isChecked = !isChecked;
+                debugPrint(isChecked.toString());
+                widget.addFavoriteId(productId, isChecked);
                 setState(
                   () {},
                 );
