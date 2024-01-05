@@ -3,13 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trendyol_store/blocs/product_bloc/product_bloc.dart';
 import 'package:trendyol_store/locator.dart';
 
-import 'pages/home_page.dart';
+import 'pages/main_state.dart';
 
 void main() {
   setupLocator();
   runApp(BlocProvider<ProductListBloc>(
       create: (context) =>
-          ProductListBloc(ProductListLoadedState(products: [])),
+          ProductListBloc(ProductListInitialState(products: const []))
+            ..add(FetchProductsEvent()),
       child: const MyApp()));
 }
 
@@ -26,6 +27,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
           useMaterial3: true,
         ),
-        home: HomePage());
+        home: const MainState());
   }
 }

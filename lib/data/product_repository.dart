@@ -5,8 +5,8 @@ import '../locator.dart';
 class ProductRepository {
   ProductApiClient productApiClient = locator<ProductApiClient>();
   Future<List<Product>> getProducts() async {
-    List<Product> products =await productApiClient.getProductsClient();
-    
+    List<Product> products = await productApiClient.getProductsClient();
+
     return products;
   }
 }

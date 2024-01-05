@@ -3,20 +3,22 @@ import 'package:flutter/material.dart';
 class CardWidget extends StatefulWidget {
   final String productImagePath;
   final String productName;
-  final void Function(int,bool) addFavoriteId;
+  final void Function(int, bool) addFavoriteId;
   final int productId;
+  final bool productIsChecked;
   const CardWidget(
       {super.key,
       required this.productImagePath,
       required this.productName,
       required this.productId,
+      required this.productIsChecked,
       required this.addFavoriteId});
   @override
   State<CardWidget> createState() => _CardWidgetState();
 }
 
 class _CardWidgetState extends State<CardWidget> {
-  bool isChecked = false;
+  late bool isChecked;
   late final String productImagePath;
   late final String productName;
   late final int productId;
@@ -24,9 +26,9 @@ class _CardWidgetState extends State<CardWidget> {
   @override
   void initState() {
     super.initState();
+    isChecked = widget.productIsChecked;
     productImagePath = widget.productImagePath;
     productName = widget.productName;
-
     productId = widget.productId;
   }
 
@@ -93,12 +95,10 @@ class _CardWidgetState extends State<CardWidget> {
                 color: (isChecked ? Colors.red.shade300 : Colors.black45),
               ),
               onPressed: () {
+                debugPrint("ONPRESSED");
                 isChecked = !isChecked;
-                if (isChecked) {
-                widget.addFavoriteId(productId,true);
-                }else{
-                widget.addFavoriteId(productId,false);
-                }
+                debugPrint(isChecked.toString());
+                widget.addFavoriteId(productId, isChecked);
                 setState(
                   () {},
                 );
