@@ -1,4 +1,3 @@
-
 import "dart:convert";
 
 import 'package:http/http.dart' as http;
@@ -8,13 +7,18 @@ class ProductApiClient {
   static const baseUrl = "https://fakestoreapi.com/products";
   final http.Client httpClient = http.Client();
   Future<List<Product>> getProductsClient() async {
-    final fetchedString = await httpClient.get(Uri.parse(baseUrl));
-    if (fetchedString.statusCode != 200) {
-      throw Exception("There is no data");
-    } else {
-      final fetchedJson = jsonDecode(fetchedString.body);
-     List<Product> products = fetchedJson.map<Product>((json) => Product.fromJson(json)).toList();
-      return products;
+    try {
+      final fetchedString = await httpClient.get(Uri.parse(baseUrl));
+      if (fetchedString.statusCode != 200) {
+        throw Exception("There is no data");
+      } else {
+        final fetchedJson = jsonDecode(fetchedString.body);
+        List<Product> products =
+            fetchedJson.map<Product>((json) => Product.fromJson(json)).toList();
+        return products;
+      }
+    } catch (e) {
+      throw Exception(e.toString());
     }
   }
 }

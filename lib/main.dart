@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trendyol_store/blocs/product_bloc/product_bloc.dart';
+import 'package:trendyol_store/blocs/search_bloc/search_bloc.dart';
 import 'package:trendyol_store/locator.dart';
 
 import 'pages/main_state.dart';
 
 void main() {
   setupLocator();
-  runApp(BlocProvider<ProductListBloc>(
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider<ProductListBloc>(
       create: (context) =>
-          ProductListBloc(ProductListInitialState())
-            ..add(FetchProductsEvent()),
-      child: const MyApp()));
+          ProductListBloc(ProductListInitialState())..add(FetchProductsEvent()),
+    ),
+    BlocProvider<SearchBloc>(
+        create: (context) =>
+            SearchBloc(SearchInitialState())..add(FetchSEvent()))
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

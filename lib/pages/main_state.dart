@@ -18,7 +18,7 @@ class _MainStateState extends State<MainState> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: Colors.grey.shade200,
       appBar: const PreferredSize(
           preferredSize: Size(100, 45), child: AppBarWidget()),
       body: IndexedStack(
@@ -26,17 +26,17 @@ class _MainStateState extends State<MainState> {
         // ignore: prefer_const_literals_to_create_immutables
         children: [
           const HomePage(),
-         const SearchPage(),
+          const SearchPage(),
           // ignore: prefer_const_constructors
           FavoritesPage(),
-          const Text(""),
+        const Text(""),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.orange.shade600,
-        backgroundColor: Colors.grey.shade100,
+        selectedItemColor: Colors.orange,
+        backgroundColor: Colors.grey.shade200,
         currentIndex: _currentIndex,
         iconSize: 35,
         onTap: (int newIndex) {

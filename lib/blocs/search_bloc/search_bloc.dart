@@ -5,27 +5,27 @@ import '../../models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'product_state.dart';
-part 'product_event.dart';
+part 'search_state.dart';
+part 'search_event.dart';
 
-class ProductListBloc extends Bloc<ProductListEvent, ProductListState> {
+class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final ProductRepository productRepository = locator<ProductRepository>();
 
-  ProductListBloc(super.initialState) {
-    on<FetchProductsEvent>(_fetchProducts);
+  SearchBloc(super.initialState) {
+    on<FetchSEvent>(_fetchSProducts);
    // on<ChangeStatetaEvent>(_changeState);
-    //on<SearchProductsEvent>(_searchProducts);
+    on<SearchProductsEvent>(_searchProducts);
   }
   List<Product> products=[];
-  void _fetchProducts(
-      FetchProductsEvent event, Emitter<ProductListState> emit) async {
+  void _fetchSProducts(
+      FetchSEvent event, Emitter<SearchState> emit) async {
     products = await productRepository.getProducts();
 
-    emit(ProductListLoadedState(products: products));
+    emit(SearchLoadedState(sProducts: products));
   }
 
- /* void _searchProducts(
-      SearchProductsEvent event, Emitter<ProductListState> emit) async {
+  void _searchProducts(
+      SearchProductsEvent event, Emitter<SearchState> emit) async {
     products = await productRepository.getProducts();
     List<Product> searchedProducts = [];
     for (var element in products) {
@@ -33,9 +33,9 @@ class ProductListBloc extends Bloc<ProductListEvent, ProductListState> {
         searchedProducts.add(element);
       }
     }
-    emit(SearchLoadedState(searchedProducts: searchedProducts));
+    emit(SearchLoadedState(sProducts: searchedProducts));
   }
-*/
+
  /* void _changeState(ChangeStatetaEvent event, Emitter<ProductListState> emit) {
     emit(ProductListLoadedState(products: products));
   }*/

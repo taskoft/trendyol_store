@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trendyol_store/blocs/search_bloc/search_bloc.dart';
 import 'package:trendyol_store/pages/detail_page.dart';
-import '../blocs/product_bloc/product_bloc.dart';
-import '../models/product.dart';
+
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -14,7 +14,8 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
-    final productBloc = BlocProvider.of<ProductListBloc>(context);
+    debugPrint("SEARCH BUILD TETIKLENDI");
+    final sBloc = BlocProvider.of<SearchBloc>(context);
 
     return Column(
       children: [
@@ -24,22 +25,23 @@ class _SearchPageState extends State<SearchPage> {
           width: 350,
           child: TextField(
             onChanged: (value) {
-              context
-                  .read<ProductListBloc>()
-                  .add(SearchProductsEvent(word: value));
+              context.read<SearchBloc>().add(SearchProductsEvent(word: value));
             },
             decoration: const InputDecoration(hintText: 'Type here to search'),
           ),
         ),
-        BlocBuilder<ProductListBloc, ProductListState>(
-          bloc: productBloc,
+        BlocBuilder<SearchBloc, SearchState>(
+          bloc: sBloc,
           builder: (context, state) {
-            if (state is ProductListLoadedState) {
+            if (state is SearchLoadedState) {
+              debugPrint("state girdi--------------------");
+              debugPrint(state.sProducts.toString());
+
               return Expanded(
                 child: ListView.builder(
-                    itemCount: state.products.length,
+                    itemCount: state.sProducts.length,
                     itemBuilder: (context, index) {
-                      final product = state.products[index];
+                      final product = state.sProducts[index];
                       return ListTile(
                         title: Text(
                           product.title!,

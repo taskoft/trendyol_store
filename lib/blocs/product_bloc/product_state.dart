@@ -36,11 +36,12 @@ class ProductListLoadedState extends ProductListState {
 }
 
 
-class SearchLoadedState extends ProductListState {
+/*class SearchLoadedState extends ProductListState {
+  
   final List<Product> searchedProducts;
 
   SearchLoadedState({required this.searchedProducts});
 
   @override
   List<Object?> get props => [searchedProducts];
-}
+}*/

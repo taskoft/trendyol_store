@@ -12,20 +12,22 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productBloc = BlocProvider.of<ProductListBloc>(context);
-    //productBloc.add(ChangeStatetaEvent());
+    //var prs  = context.watch<ProductListBloc>().products;
+    //debugPrint(prs.length.toString());
+    List<Product> products = [];
     debugPrint("BUILD");
-
+    //context.read<ProductListBloc>().add(FetchProductsEvent());
     return BlocBuilder(
       bloc: productBloc,
       builder: (context, state) {
-        List<Product> products = [];
-
-        debugPrint("BLOCBUILDER");
         if (state is ProductListInitialState) {
           return const Center(
-              child: CircularProgressIndicator(color: Colors.teal));
+              child: CircularProgressIndicator(color: Colors.black));
         }
         if (state is ProductListLoadedState) {
+          debugPrint(
+              "PRODUCTS HOMEPAGE: ---------------------------${state.products.length}-------------");
+
           products = state.products;
           return GridView.builder(
             itemCount: products.length,

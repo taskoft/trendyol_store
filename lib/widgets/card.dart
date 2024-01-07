@@ -65,7 +65,7 @@ class _CardWidgetState extends State<CardWidget> {
                 },
                 child: Text(
                   productName,
-                  style: const TextStyle(color: Colors.black87  ,
+                  style: const TextStyle(color: Colors.black  ,
                       fontWeight: FontWeight.w600,
                       fontSize: 22,
                       fontFamily: 'Dance'),
@@ -98,7 +98,7 @@ class _CardWidgetState extends State<CardWidget> {
             child: IconButton(
               icon: Icon(
                 (isChecked ? Icons.favorite : Icons.favorite_outline),
-                color: (isChecked ? Colors.red.shade300 : Colors.black45),
+                color: (isChecked ? Colors.red : Colors.black),
               ),
               onPressed: () {
                // debugPrint("ONPRESSED");

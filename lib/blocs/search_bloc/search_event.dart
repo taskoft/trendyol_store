@@ -1,12 +1,12 @@
-part of 'product_bloc.dart';
+part of 'search_bloc.dart';
 
 @immutable
-class ProductListEvent extends Equatable {
+class SearchEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-class FetchProductsEvent extends ProductListEvent {
+class FetchSEvent extends SearchEvent {
   // final List<Product> product=[Product()];
 }
 
@@ -14,10 +14,10 @@ class FetchProductsEvent extends ProductListEvent {
  // final List<Product> product=[Product()];
 }*/
 
-/*class SearchProductsEvent extends ProductListEvent {
+class SearchProductsEvent extends SearchEvent {
   final String word;
 
   SearchProductsEvent({required this.word});
   @override
   List<Object?> get props => [];
-}*/
+}

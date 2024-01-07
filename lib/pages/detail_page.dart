@@ -68,7 +68,7 @@ class DetailPage extends StatelessWidget {
                               fontWeight: FontWeight.w200,
                               fontSize: 20,
                               fontFamily: 'Dance',
-                              color: Colors.black54),
+                              color: Colors.black),
                         ),
                       ],
                     ),
@@ -107,7 +107,7 @@ class DetailPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Container(
+            child: SizedBox(
               //color: Colors.blueAccent,
               height: 500,
               width: 380,
@@ -141,7 +141,7 @@ class DetailPage extends StatelessWidget {
                         fontWeight: FontWeight.normal,
                         fontSize: 22,
                         fontFamily: 'Dance',
-                        color: Colors.black54),
+                        color: Colors.black),
                     maxLines: 12,
                   ),
                 ],
