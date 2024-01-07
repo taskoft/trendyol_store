@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:trendyol_store/pages/search_page.dart';
 import '../widgets/app_bar.dart';
 import 'favorites_page.dart';
 import 'home_page.dart';
@@ -17,16 +18,18 @@ class _MainStateState extends State<MainState> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Colors.grey.shade300,
       appBar: const PreferredSize(
           preferredSize: Size(100, 45), child: AppBarWidget()),
       body: IndexedStack(
         index: _currentIndex,
-        children:  [
-         const HomePage(),
-         const Text(""),
+        // ignore: prefer_const_literals_to_create_immutables
+        children: [
+          const HomePage(),
+         const SearchPage(),
+          // ignore: prefer_const_constructors
           FavoritesPage(),
-         const Text(""),
+          const Text(""),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

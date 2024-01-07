@@ -1,4 +1,4 @@
-part of 'product_cubit_cubit.dart';
+/*part of 'product_cubit_cubit.dart';
 
 sealed class ProductCubitState extends Equatable {
   const ProductCubitState();
@@ -7,4 +7,4 @@ sealed class ProductCubitState extends Equatable {
   List<Object> get props => [];
 }
 
-final class ProductCubitInitial extends ProductCubitState {}
+final class ProductCubitInitial extends ProductCubitState {}*/

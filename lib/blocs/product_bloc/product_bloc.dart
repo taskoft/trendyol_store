@@ -13,7 +13,8 @@ class ProductListBloc extends Bloc<ProductListEvent, ProductListState> {
 
   ProductListBloc(super.initialState) {
     on<FetchProductsEvent>(_fetchProducts);
-    on<EditProductsEvent>(_editProducts);
+   // on<ChangeStatetaEvent>(_changeState);
+    on<SearchProductsEvent>(_searchProducts);
   }
 
   void _fetchProducts(
@@ -23,6 +24,19 @@ class ProductListBloc extends Bloc<ProductListEvent, ProductListState> {
     emit(ProductListLoadedState(products: products));
   }
 
-  void _editProducts(
-      EditProductsEvent event, Emitter<ProductListState> emit) async {}
+  void _searchProducts(
+      SearchProductsEvent event, Emitter<ProductListState> emit) async {
+    final List<Product> products = await productRepository.getProducts();
+    List<Product> searchedProducts = [];
+    for (var element in products) {
+      if (element.title!.contains(event.word)) {
+        searchedProducts.add(element);
+      }
+    }
+    emit(ProductListLoadedState(products: searchedProducts));
+  }
+
+  /*void _changeState(ChangeStatetaEvent event, Emitter<ProductListState> emit) {
+    emit(ProductListLoadedState(products: products));
+  }*/
 }

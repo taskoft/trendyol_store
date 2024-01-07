@@ -12,21 +12,25 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productBloc = BlocProvider.of<ProductListBloc>(context);
+    //productBloc.add(ChangeStatetaEvent());
+    debugPrint("BUILD");
 
     return BlocBuilder(
       bloc: productBloc,
       builder: (context, state) {
+        List<Product> products = [];
+
+        debugPrint("BLOCBUILDER");
         if (state is ProductListInitialState) {
           return const Center(
               child: CircularProgressIndicator(color: Colors.teal));
         }
         if (state is ProductListLoadedState) {
-          final List<Product> products = state.products;
-
+          products = state.products;
           return GridView.builder(
             itemCount: products.length,
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 270, mainAxisExtent: 250),
+                maxCrossAxisExtent: 270, mainAxisExtent: 240),
             itemBuilder: (BuildContext context, int count) {
               return CardWidget(
                 productImagePath: products[count].image.toString(),
@@ -37,7 +41,8 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => DetailPage(product: products[count])));
+                          builder: (context) =>
+                              DetailPage(product: products[count])));
                 },
                 addFavoriteId: (int id, bool isChecked) {
                   state.products[count].isChecked = isChecked;

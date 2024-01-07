@@ -50,7 +50,7 @@ class _CardWidgetState extends State<CardWidget> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Image.network(productImagePath,
-                  height: 140,
+                  height: 130,
                   alignment: Alignment.center,
                   fit: BoxFit.contain),
             ),
@@ -58,7 +58,7 @@ class _CardWidgetState extends State<CardWidget> {
           Positioned(
               left: 10,
               right: 10,
-              top: 160,
+              top: 150,
               child: TextButton(
                 onPressed: () {
                   widget.detailFunction(productId);
@@ -76,7 +76,7 @@ class _CardWidgetState extends State<CardWidget> {
           const Positioned(
             left: 20,
             right: 20,
-            top: 196,
+            top: 186,
             child: Text(
               'SHOP NOW  ',
               style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
@@ -84,9 +84,9 @@ class _CardWidgetState extends State<CardWidget> {
             ),
           ),
           const Positioned(
-              left: 75,
-              right: 75,
-              top: 216,
+              left: 40,
+              right: 40,
+              top: 206,
               child: Divider(
                 color: Colors.black,
                 height: 4,
@@ -101,9 +101,9 @@ class _CardWidgetState extends State<CardWidget> {
                 color: (isChecked ? Colors.red.shade300 : Colors.black45),
               ),
               onPressed: () {
-                debugPrint("ONPRESSED");
+               // debugPrint("ONPRESSED");
                 isChecked = !isChecked;
-                debugPrint(isChecked.toString());
+                //debugPrint(isChecked.toString());
                 widget.addFavoriteId(productId, isChecked);
                 setState(
                   () {},

@@ -9,7 +9,7 @@ void main() {
   setupLocator();
   runApp(BlocProvider<ProductListBloc>(
       create: (context) =>
-          ProductListBloc(ProductListInitialState(products: const []))
+          ProductListBloc(ProductListInitialState())
             ..add(FetchProductsEvent()),
       child: const MyApp()));
 }

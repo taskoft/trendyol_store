@@ -1,17 +1,21 @@
 part of 'product_bloc.dart';
 
-
 @immutable
-class ProductListEvent extends Equatable{
+class ProductListEvent extends Equatable {
   @override
   List<Object?> get props => [];
-
 }
 
 class FetchProductsEvent extends ProductListEvent {
- // final List<Product> product=[Product()];
+  // final List<Product> product=[Product()];
 }
 
-class EditProductsEvent extends ProductListEvent {
+/*class ChangeStatetaEvent extends ProductListEvent {
  // final List<Product> product=[Product()];
+}*/
+
+class SearchProductsEvent extends ProductListEvent {
+  final String word;
+
+  SearchProductsEvent({required this.word});
 }

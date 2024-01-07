@@ -25,7 +25,10 @@ class _FavoritesPageState extends State<FavoritesPage> {
     return BlocBuilder(
       bloc: productBloc,
       builder: (context, state) {
-        products = context.watch<ProductListBloc>().state.products;
+      //  products = context.watch<ProductListBloc>().state.products;
+      if (state is ProductListLoadedState) {
+        products=state.products;
+      }
         /* fProducts.add(context
             .watch<ProductListBloc>()
             .state
@@ -37,14 +40,14 @@ class _FavoritesPageState extends State<FavoritesPage> {
           }
         }
 
-        debugPrint(fProducts.toString());
+       // debugPrint(fProducts.toString());
         return GridView.builder(
           itemCount: fProducts.length,
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 270, mainAxisExtent: 250),
+              maxCrossAxisExtent: 270, mainAxisExtent: 240),
           itemBuilder: (BuildContext context, int count) {
-            debugPrint(count.toString());
-            debugPrint(fProducts[count].title.toString());
+            //debugPrint(count.toString());
+          //  debugPrint(fProducts[count].title.toString());
 
             return CardWidget(
               productImagePath: fProducts[count].image.toString(),
