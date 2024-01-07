@@ -23,7 +23,6 @@ class _MainStateState extends State<MainState> {
       body: IndexedStack(
         index: _currentIndex,
         children:  [
-          //Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage() )),
          const HomePage(),
          const Text(""),
           FavoritesPage(),
@@ -38,11 +37,9 @@ class _MainStateState extends State<MainState> {
         currentIndex: _currentIndex,
         iconSize: 35,
         onTap: (int newIndex) {
-          if (_currentIndex != newIndex) {
-            setState(() {
-              _currentIndex = newIndex;
-            });
-          }
+          setState(() {
+            _currentIndex = newIndex;
+          });
         },
         showSelectedLabels: false,
         showUnselectedLabels: false,

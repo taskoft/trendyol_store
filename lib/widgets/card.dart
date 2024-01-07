@@ -4,6 +4,7 @@ class CardWidget extends StatefulWidget {
   final String productImagePath;
   final String productName;
   final void Function(int, bool) addFavoriteId;
+  final void Function(int) detailFunction;
   final int productId;
   final bool productIsChecked;
   const CardWidget(
@@ -12,7 +13,8 @@ class CardWidget extends StatefulWidget {
       required this.productName,
       required this.productId,
       required this.productIsChecked,
-      required this.addFavoriteId});
+      required this.addFavoriteId,
+      required this.detailFunction});
   @override
   State<CardWidget> createState() => _CardWidgetState();
 }
@@ -54,19 +56,23 @@ class _CardWidgetState extends State<CardWidget> {
             ),
           ),
           Positioned(
-            left: 10,
-            right: 10,
-            top: 160,
-            child: Text(
-              productName,
-              style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 22,
-                  fontFamily: 'Dance'),
-              textAlign: TextAlign.center,
-              maxLines: 1,
-            ),
-          ),
+              left: 10,
+              right: 10,
+              top: 160,
+              child: TextButton(
+                onPressed: () {
+                  widget.detailFunction(productId);
+                },
+                child: Text(
+                  productName,
+                  style: const TextStyle(color: Colors.black87  ,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 22,
+                      fontFamily: 'Dance'),
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                ),
+              )),
           const Positioned(
             left: 20,
             right: 20,
@@ -78,8 +84,8 @@ class _CardWidgetState extends State<CardWidget> {
             ),
           ),
           const Positioned(
-              left: 45,
-              right: 45,
+              left: 75,
+              right: 75,
               top: 216,
               child: Divider(
                 color: Colors.black,
