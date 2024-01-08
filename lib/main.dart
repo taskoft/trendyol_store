@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:trendyol_store/blocs/cart_bloc/cart_bloc.dart';
 import 'package:trendyol_store/blocs/product_bloc/product_bloc.dart';
 import 'package:trendyol_store/blocs/search_bloc/search_bloc.dart';
 import 'package:trendyol_store/locator.dart';
@@ -15,7 +16,9 @@ void main() {
     ),
     BlocProvider<SearchBloc>(
         create: (context) =>
-            SearchBloc(SearchInitialState())..add(FetchSEvent()))
+            SearchBloc(SearchInitialState())..add(FetchSEvent())),
+    BlocProvider<CartBloc>(
+        create: (context) => CartBloc()..add(FetchCartEvent()))
   ], child: const MyApp()));
 }
 

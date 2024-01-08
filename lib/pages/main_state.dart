@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:trendyol_store/pages/search_page.dart';
 import '../widgets/app_bar.dart';
+import 'carts_page.dart';
 import 'favorites_page.dart';
 import 'home_page.dart';
 
@@ -29,7 +30,7 @@ class _MainStateState extends State<MainState> {
           const SearchPage(),
           // ignore: prefer_const_constructors
           FavoritesPage(),
-        const Text(""),
+          CartsPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
