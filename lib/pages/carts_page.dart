@@ -17,7 +17,7 @@ class _CartsPageState extends State<CartsPage> {
     final cartBloc = BlocProvider.of<CartBloc>(context);
     //final productBloc = BlocProvider.of<ProductListBloc>(context);
     List<Product> allProducts = [];
-
+    debugPrint("CARTS BUILD");
     return BlocBuilder(
       bloc: cartBloc,
       builder: ((context, state) {
@@ -33,7 +33,10 @@ class _CartsPageState extends State<CartsPage> {
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 400, mainAxisExtent: 160),
               itemBuilder: (context, count) {
-                return _cartsWidget(allProducts[count]);
+                return _cartsWidget(allProducts[count], (id) {
+                  state.product.removeWhere((element) => element.id == id);
+                  setState(() {});
+                });
               });
         }
         return const Center(
@@ -44,7 +47,9 @@ class _CartsPageState extends State<CartsPage> {
     );
   }
 
-  Widget _cartsWidget(Product pr) {
+  Widget _cartsWidget(Product pr, void Function(int) removeFunction) {
+    final void Function(int) detailFunction = removeFunction;
+
     return Container(
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(10)),
@@ -65,41 +70,32 @@ class _CartsPageState extends State<CartsPage> {
             ),
           ),
           Positioned(
-              left: 110,
-              right: 10,
-              top: 15,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DetailPage(product: pr)),
-                  );
-                },
-                child: Text(
-                  pr.title.toString(),
-                  style: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 22,
-                      fontFamily: 'Dance'),
-                  textAlign: TextAlign.start,
-                  maxLines: 1,
-                ),
-              )),
-          const Positioned(
-            left: 121,
-            right: 15,
-            top: 100,
-            child: Text(
-              'REMOVE  ',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-              textAlign: TextAlign.start,
+            left: 110,
+            right: 10,
+            top: 15,
+            child: TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailPage(product: pr)),
+                );
+              },
+              child: Text(
+                pr.title.toString(),
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 22,
+                    fontFamily: 'Dance'),
+                textAlign: TextAlign.start,
+                maxLines: 1,
+              ),
             ),
           ),
           const Positioned(
-            left: 121,
-            right: 195,
+            left: 120,
+            right: 212,
             top: 120,
             child: Divider(
               color: Colors.black,
@@ -133,6 +129,25 @@ class _CartsPageState extends State<CartsPage> {
                   fontSize: 14,
                   color: Colors.black54),
               textAlign: TextAlign.start,
+            ),
+          ),
+          Positioned(
+            left: 10,
+            right: 100,
+            top: 60,
+            bottom: 1,
+            child: TextButton(
+              onPressed: () {
+                detailFunction(pr.id!);
+              },
+              child: const Text(
+                'REMOVE',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,color: Colors.black,
+                ),
+                textAlign: TextAlign.start,
+              ),
             ),
           ),
         ],
